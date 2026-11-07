@@ -1,7 +1,5 @@
 # Overview
 
-{Important! Do not say in this section that this is college assignment. Talk about what you are trying to accomplish as a software engineer to further your learning.}
-
 Adventure Mania is a web-based adventure game backend and front end that I built in Java using Spring Boot. Players register an account and log in, and each account is automatically given one game character. A character has stats (HP, level, current and maximum experience points), a character class, and a set of skills. The data is stored in a PostgreSQL database and accessed through Spring Data JPA and Hibernate.
 
 The project demonstrates several core Java concepts:
@@ -13,11 +11,12 @@ The project demonstrates several core Java concepts:
     - Collections and generics: Lists of skills and repository interfaces with generic types, such as JpaRepository<CharacterEnt, Integer>.
     - Database access: Repository interfaces extend JpaRepository, and derived query methods like findByAccountId are translated into SQL automatically.
 
-{Describe your purpose for writing this software.}
+I wrote this software to practice building a complete, realistic Java application instead of isolated exercises. I wanted to learn how the pieces of a modern Java application fit together: user input in a web form, validation, business logic, and persistent storage in a relational database. A game was a good fit because accounts, characters, stats, and skills are easy to model as objects with clear relationships, which let me work with object-oriented design and database mapping.
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code. Focus should be on sharing what you learned about the language syntax.}
+I also wanted experience with problems that come up in real projects. I handled null and default values on database inserts, kept an account and its character consistent by saving them in one transaction, and kept sensitive data like passwords out of logs and toString() output.
 
-[Software Demo Video](http://youtube.link.goes.here)
+
+[Software Demo Video] https://youtu.be/5MayxTGHxv0
 
 # Development Environment
 
