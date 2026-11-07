@@ -1,0 +1,13 @@
+package com.adventure_mania.jproj;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class JprojApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(JprojApplication.class, args);
+	}
+
+}

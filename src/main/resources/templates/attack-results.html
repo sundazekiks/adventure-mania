@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Battle results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
+
+    <main class="w-full max-w-md">
+
+        <!-- VICTORY: controller sets "characterDetails" only when the player wins -->
+        <section th:if="${characterDetails != null}"
+            class="rounded-2xl border border-emerald-500/40 bg-slate-900 p-8 shadow-xl">
+            <h1 class="text-3xl font-bold text-emerald-400">Victory!</h1>
+            <p class="mt-2 text-slate-400">You defeated the monster and earned experience.</p>
+
+            <div class="mt-8 flex items-baseline justify-between">
+                <span class="text-slate-400">Current level</span>
+                <span class="text-4xl font-bold text-amber-300" th:text="${characterDetails.level}">1</span>
+            </div>
+
+            <div class="mt-6">
+                <div class="flex justify-between text-sm text-slate-400">
+                    <span>Experience</span>
+                    <span>
+                        <span th:text="${characterDetails.current_exp}">0</span>
+                        /
+                        <span th:text="${characterDetails.max_exp}">100</span> XP
+                    </span>
+                </div>
+                <div class="mt-2 h-3 w-full overflow-hidden rounded-full bg-slate-800">
+                    <div class="h-full rounded-full bg-emerald-500"
+                        th:style="'width:' + (${characterDetails.max_exp > 0 and characterDetails.current_exp < characterDetails.max_exp} ? ${characterDetails.current_exp * 100 / characterDetails.max_exp} : 100) + '%'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEFEAT: controller sets "status" (false) only when the player loses -->
+        <section th:if="${characterDetails == null and status != null}"
+            class="rounded-2xl border border-rose-500/40 bg-slate-900 p-8 shadow-xl">
+            <h1 class="text-3xl font-bold text-rose-400">Defeated</h1>
+            <p class="mt-2 text-slate-400">The monster won this fight. You earned no experience.</p>
+        </section>
+
+        <!-- Fallback if the page is opened without any result -->
+        <section th:if="${characterDetails == null and status == null}"
+            class="rounded-2xl border border-slate-700 bg-slate-900 p-8 shadow-xl">
+            <h1 class="text-2xl font-bold">No battle found</h1>
+            <p class="mt-2 text-slate-400">Start a hunt to see your results here.</p>
+        </section>
+
+        <a th:href="@{/hunt}"
+            class="mt-6 block rounded-xl bg-amber-400 px-4 py-3 text-center font-semibold text-slate-900 hover:bg-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200">
+            Hunt again
+        </a>
+
+    </main>
+</body>
+
+</html>
